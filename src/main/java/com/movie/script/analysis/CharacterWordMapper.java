@@ -23,15 +23,13 @@ public class CharacterWordMapper extends Mapper<Object, Text, Text, IntWritable>
         String[] parts = line.split(":", 2);
         if (parts.length < 2) return;
         
-        String character = parts[0].trim();
         String dialogue = parts[1].trim();
         
-        StringTokenizer tokenizer = new StringTokenizer(dialogue);
-        
-        while (tokenizer.hasMoreTokens()) {
-            word.set(tokenizer.nextToken().toLowerCase());
-            characterWord.set(character + "_" + word.toString());
-            context.write(characterWord, one);
+        StringTokenizer st_itr = new StringTokenizer(dialogue.toString());
+        while (st_itr.hasMoreTokens()) {
+            word.set(st_itr.nextToken());
+            context.write(word, one);
         }
+
     }
 }
