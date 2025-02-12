@@ -225,6 +225,109 @@ Once you've pushed your code, go to GitHub Classroom and ensure your repository 
 
 ---
 
+Here’s a structured project report based on your Hadoop MapReduce job for finding the top 10 most frequent words in a movie script.  
+
+---
+
+# **Movie Script Word Frequency Analysis using Hadoop MapReduce**  
+Here’s a structured project report covering all three tasks combined:  
+
+---
+
+# **Movie Script Analysis using Hadoop MapReduce**  
+
+## **1. Project Overview**  
+This project analyzes movie scripts using Hadoop MapReduce by performing three key tasks:  
+1. **Word Frequency Analysis** – Identifies the most frequently spoken words in the script.  
+2. **Dialogue Length Calculation** – Computes the total number of words spoken by each character.  
+3. **Unique Words Per Character** – Determines the unique words spoken by each character.  
+
+By leveraging Hadoop’s distributed processing, the project efficiently processes large scripts and extracts valuable insights.  
+
+---
+
+## **2. Approach and Implementation**  
+
+### **Task 1: Word Frequency Analysis**  
+#### **Mapper (CharacterWordMapper.java)**  
+- Reads each line of the script, tokenizes it into words, and associates each word with a count of `1`.  
+- Outputs key-value pairs in the format `<word, 1>`.  
+
+#### **Reducer (CharacterWordReducer.java)**  
+- Aggregates word counts to determine their total occurrences in the script along with maintaing top 10.  
+- Outputs key-value pairs in the format `<word, total_count>`.  
+
+---
+
+### **Task 2: Dialogue Length Calculation**  
+#### **Mapper (DialogueLengthMapper.java)**  
+- Extracts the character name and the number of words spoken in their dialogue.  
+- Outputs key-value pairs in the format `<character, word_count>`.  
+
+#### **Reducer (DialogueLengthReducer.java)**  
+- Sums up the word counts for each character to determine the total dialogue length.  
+- Outputs key-value pairs in the format `<character, total_word_count>`.  
+
+---
+
+### **Task 3: Unique Words Per Character**  
+#### **Mapper (UniqueWordsMapper.java)**  
+- Associates each unique word with the character who spoke it.  
+- Outputs key-value pairs in the format `<character, word>`.  
+
+#### **Reducer (UniqueWordsReducer.java)**  
+- Collects unique words spoken by each character.  
+- Outputs key-value pairs in the format `<character, unique_words_list>`.  
+
+---
+
+## **3. Execution Steps**  
+Followed steps mentioned above
+---
+
+## **4. Challenges Faced & Solutions**  
+
+Had issue in finding the top 10 values later able to resolve it using the new function
+
+---
+
+## **5. Sample Input and Output**  
+
+### **Sample Input (Movie Script Snippet)**
+```txt
+CHARACTER_A: Hello there! Welcome to the movie.
+CHARACTER_B: Movies are great. Hello again!
+CHARACTER_A: Yes, movies are amazing.
+```
+
+### **Output for Task 1: Word Frequency Analysis**  
+```txt
+hello    2  
+there    1  
+welcome  1  
+to       1  
+movie    1  
+movies   2  
+are      2  
+great    1  
+again    1  
+yes      1  
+amazing  1  
+```
+
+### **Output for Task 2: Dialogue Length Calculation**  
+```txt
+CHARACTER_A    7  
+CHARACTER_B    5  
+```
+
+### **Output for Task 3: Unique Words Per Character**  
+```txt
+CHARACTER_A    hello, there, welcome, to, movie, yes, amazing  
+CHARACTER_B    movies, are, great, hello, again  
+```
+
+
 This concludes the instructions for the hands-on activity. If you encounter any issues, feel free to reach out during office hours or post your queries in the course discussion forum.
 
 Good luck, and happy coding!
